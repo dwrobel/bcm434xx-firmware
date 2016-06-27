@@ -3,8 +3,8 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date	20160506
-%global commit_long	54bab3d6a6d43239c71d26464e6e10e5067ffea7
+%global snap_date	20160627
+%global commit_long	a7491de4c4b2f1ceb5d0dfa5350b95e5c6fb9bd4
 %global commit_short	%(c=%{commit_long}; echo ${c:0:7})
 
 Name:       bcm43438-firmware
@@ -49,6 +49,10 @@ cp -a %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} .
 
 
 %changelog
+* Mon Jun 27 2016 Vaughan <devel at agrez dot net> - 20160627-1.a7491de
+- Sync to commit a7491de4c4b2f1ceb5d0dfa5350b95e5c6fb9bd4 (this updates 
+  brcmfmac43430-sdio.bin to version 7.45.41.26)
+
 * Fri May 06 2016 Vaughan <devel at agrez dot net> - 20160506-1.54bab3d
 - Rename package (whilst the chipset identifies itself as bcm43430
   its actually the bcm43438 module that is used in the RPi3.)
