@@ -9,12 +9,12 @@
 
 Name:       bcm43438-firmware
 Version:    %{snap_date}
-Release:    1.%{commit_short}%{?dist}
+Release:    2.%{commit_short}%{?dist}
 Summary:    Binary firmware for Broadcom BCM43438 SDIO module
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
 URL:        https://github.com/RPi-Distro/firmware-nonfree
-Source0:    https://github.com/RPi-Distro/firmware-nonfree/raw/%{commit_long}/brcm80211/brcm/brcmfmac43430-sdio.bin
+#Source0:    https://github.com/RPi-Distro/firmware-nonfree/raw/%{commit_long}/brcm80211/brcm/brcmfmac43430-sdio.bin
 Source1:    https://github.com/RPi-Distro/firmware-nonfree/raw/%{commit_long}/brcm80211/brcm/brcmfmac43430-sdio.txt
 Source2:    https://github.com/RPi-Distro/firmware-nonfree/raw/%{commit_long}/brcm80211/LICENSE
 Source3:    https://github.com/OpenELEC/misc-firmware/raw/master/firmware/brcm/BCM43430A1.hcd
@@ -32,14 +32,14 @@ in the Raspberry Pi 3 Model B.
 %prep
 %setup -c -T %{name}-%{commit_short}
 
-cp -a %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} .
+cp -a %{SOURCE1} %{SOURCE2} %{SOURCE3} .
 
 %build
 
 
 %install
 %{__install} -d %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 brcmfmac43430-sdio.bin %{buildroot}/%{_libdir}/firmware/brcm/
+#%{__install} -p -m0644 brcmfmac43430-sdio.bin %{buildroot}/%{_libdir}/firmware/brcm/
 %{__install} -p -m0644 brcmfmac43430-sdio.txt %{buildroot}/%{_libdir}/firmware/brcm/
 %{__install} -p -m0644 BCM43430A1.hcd %{buildroot}/%{_libdir}/firmware/brcm/
 
@@ -49,6 +49,10 @@ cp -a %{SOURCE0} %{SOURCE1} %{SOURCE2} %{SOURCE3} .
 
 
 %changelog
+* Sat Oct 01 2016 Vaughan <devel at agrez dot net> - 20160627-2.a7491de
+- Drop SOURCE0 (brcmfmac43430-sdio.bin) as its now inlcuded upstream
+  (linux-firmware >= 20160923-68.git42ad5367.fc24)
+
 * Mon Jun 27 2016 Vaughan <devel at agrez dot net> - 20160627-1.a7491de
 - Sync to commit a7491de4c4b2f1ceb5d0dfa5350b95e5c6fb9bd4 (this updates 
   brcmfmac43430-sdio.bin to version 7.45.41.26)
