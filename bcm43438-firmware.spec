@@ -14,9 +14,9 @@ Summary:    Binary firmware for Broadcom BCM43438 SDIO module
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
 URL:        https://github.com/RPi-Distro/firmware-nonfree
-#Source0:    https://github.com/RPi-Distro/firmware-nonfree/raw/%{commit_long}/brcm80211/brcm/brcmfmac43430-sdio.bin
-Source1:    https://github.com/RPi-Distro/firmware-nonfree/raw/%{commit_long}/brcm80211/brcm/brcmfmac43430-sdio.txt
-Source2:    https://github.com/RPi-Distro/firmware-nonfree/raw/%{commit_long}/brcm80211/LICENSE
+Source0:    %{url}/raw/%{commit_long}/brcm/brcmfmac43430-sdio.bin
+Source1:    %{url}/raw/%{commit_long}/brcm/brcmfmac43430-sdio.txt
+Source2:    %{url}/raw/%{commit_long}/LICENCE.broadcom_bcm43xx
 Source3:    https://github.com/OpenELEC/misc-firmware/raw/master/firmware/brcm/BCM43430A1.hcd
 
 BuildArch:  noarch
@@ -39,9 +39,10 @@ cp -a %{SOURCE1} %{SOURCE2} %{SOURCE3} .
 
 %install
 %{__install} -d %{buildroot}/%{_libdir}/firmware/brcm/
-#%{__install} -p -m0644 brcmfmac43430-sdio.bin %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 brcmfmac43430-sdio.txt %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 BCM43430A1.hcd %{buildroot}/%{_libdir}/firmware/brcm/
+%{__install} -p -m0644 %{SOURCE0} %{buildroot}/%{_libdir}/firmware/brcm/
+%{__install} -p -m0644 %{SOURCE1} %{buildroot}/%{_libdir}/firmware/brcm/
+%{__install} -p -m0644 %{SOURCE3} %{buildroot}/%{_libdir}/firmware/brcm/
+
 
 %files
 %license LICENSE
