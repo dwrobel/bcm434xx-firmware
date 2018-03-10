@@ -9,7 +9,7 @@
 
 Name:       bcm43438-firmware
 Version:    %{snap_date}
-Release:    2.%{commit_short}%{?dist}
+Release:    1.%{commit_short}%{?dist}
 Summary:    Binary firmware for Broadcom BCM43438 SDIO module
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -20,9 +20,7 @@ Source2:    %{url}/raw/%{commit_long}/LICENCE.broadcom_bcm43xx
 Source3:    https://github.com/OpenELEC/misc-firmware/raw/master/firmware/brcm/BCM43430A1.hcd
 
 BuildArch:  noarch
-Obsoletes:  brcm43430-firmware
-Conflicts:  brcm43430-firmware
-
+Conflicts:  linux-firmware < 20171215-83.git2451bb22
 
 %description
 This package contains the binary firmware for Broadcom BCM43438 wifi/bluetooth module.
@@ -32,7 +30,8 @@ in the Raspberry Pi 3 Model B.
 %prep
 %setup -c -T %{name}-%{commit_short}
 
-cp -a %{SOURCE1} %{SOURCE2} %{SOURCE3} .
+cp -a %{sources} .
+
 
 %build
 
@@ -45,11 +44,17 @@ cp -a %{SOURCE1} %{SOURCE2} %{SOURCE3} .
 
 
 %files
-%license LICENSE
+%license LICENCE.broadcom_bcm43xx
 %{_libdir}/firmware/brcm/*
 
 
 %changelog
+* Thu Mar 08 2018 Vaughan <devel at agrez dot net> - 20180306-1.927fa8e
+- Re-add wifi firmware brcmfmac43430-sdio.bin
+- Sync to commit 927fa8ebdf5bcfb90944465b40ec4981e01d6015
+  (brcmfmac43430-sdio.bin version 7.45.98.38)
+- Update spec
+
 * Sat Oct 01 2016 Vaughan <devel at agrez dot net> - 20160627-2.a7491de
 - Drop SOURCE0 (brcmfmac43430-sdio.bin) as its now inlcuded upstream
   (linux-firmware >= 20160923-68.git42ad5367.fc24)
