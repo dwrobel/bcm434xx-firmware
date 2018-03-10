@@ -3,8 +3,8 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date	20160627
-%global commit_long	a7491de4c4b2f1ceb5d0dfa5350b95e5c6fb9bd4
+%global snap_date	20180306
+%global commit_long	927fa8ebdf5bcfb90944465b40ec4981e01d6015
 %global commit_short	%(c=%{commit_long}; echo ${c:0:7})
 
 Name:       bcm43438-firmware
