@@ -3,9 +3,10 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date	20180319
-%global commit_long	86e88fbf0345da49555d0ec34c80b4fbae7d0cd3
-%global commit_short	%(c=%{commit_long}; echo ${c:0:7})
+%global snap_date	20181010
+%global commit_fw   b518de45ced519e8f7a499f4778100173402ae43
+%global commit_bt   ade2bae1aaaebede09abb8fb546f767a0e4c7804
+%global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 
 Name:       bcm434xx-firmware
 Version:    %{snap_date}
