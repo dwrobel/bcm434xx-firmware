@@ -13,14 +13,17 @@ Release:    1.%{commit_short}%{?dist}
 Summary:    Binary firmwares for Broadcom BCM434xx modules
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
-URL:        https://github.com/RPi-Distro/firmware-nonfree
-Source0:    %{url}/raw/%{commit_long}/brcm/brcmfmac43430-sdio.bin
-Source1:    %{url}/raw/%{commit_long}/brcm/brcmfmac43430-sdio.txt
-Source2:    %{url}/raw/%{commit_long}/LICENCE.broadcom_bcm43xx
-Source3:    https://github.com/OpenELEC/misc-firmware/raw/master/firmware/brcm/BCM43430A1.hcd
-Source4:    %{url}/raw/%{commit_long}/brcm/brcmfmac43455-sdio.bin
-Source5:    %{url}/raw/%{commit_long}/brcm/brcmfmac43455-sdio.clm_blob
-Source6:    %{url}/raw/%{commit_long}/brcm/brcmfmac43455-sdio.txt
+URL:        https://github.com/RPi-Distro
+Source0:    %{url}/firmware-nonfree/raw/%{commit_fw}/LICENCE.broadcom_bcm43xx
+# RPi3B wifi firmware
+Source1:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43430-sdio.bin
+Source2:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43430-sdio.txt
+# RPi3B bluetooth firmware
+Source3:    %{url}/bluez-firmware/raw/%{commit_bt}/broadcom/BCM43430A1.hcd
+# RPi3B+ wifi firmware
+Source4:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.bin
+Source5:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.clm_blob
+Source6:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.txt
 
 BuildArch:  noarch
 Conflicts:  linux-firmware < 20171215-83.git2451bb22
@@ -45,12 +48,11 @@ cp -a %{sources} .
 
 %install
 %{__install} -d %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 %{SOURCE0} %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 %{SOURCE1} %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 %{SOURCE3} %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 %{SOURCE4} %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 %{SOURCE5} %{buildroot}/%{_libdir}/firmware/brcm/
-%{__install} -p -m0644 %{SOURCE6} %{buildroot}/%{_libdir}/firmware/brcm/
+
+for i in %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} \
+%{SOURCE7}; do
+    %{__install} -p -m0644 $i %{buildroot}/%{_libdir}/firmware/brcm/
+done
 
 
 %files
