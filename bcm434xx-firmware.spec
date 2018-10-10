@@ -64,6 +64,12 @@ done
 
 
 %changelog
+* Wed Oct 10 2018 Vaughan <devel at agrez dot net> - 20181010-1.b518de4
+- Refactor sources (all firmware now sourced from https://github.com/RPi-Distro)
+- Sync firmware-nonfree to commit b518de45ced519e8f7a499f4778100173402ae43
+- Sync bluez-firmware to commit ade2bae1aaaebede09abb8fb546f767a0e4c7804
+- Add RPi3B+ bluetooth firmware (BCM4345C0.hcd)
+
 * Mon Mar 19 2018 Vaughan <devel at agrez dot net> - 20180319-1.86e88fbf
 - Rename package (it now contains multiple firmwares)
 - Add brcmfmac43455 firmware files (for RPi3B+) (v7.45.154)
@@ -81,7 +87,7 @@ done
   (linux-firmware >= 20160923-68.git42ad5367.fc24)
 
 * Mon Jun 27 2016 Vaughan <devel at agrez dot net> - 20160627-1.a7491de
-- Sync to commit a7491de4c4b2f1ceb5d0dfa5350b95e5c6fb9bd4 (this updates 
+- Sync to commit a7491de4c4b2f1ceb5d0dfa5350b95e5c6fb9bd4 (this updates
   brcmfmac43430-sdio.bin to version 7.45.41.26)
 
 * Fri May 06 2016 Vaughan <devel at agrez dot net> - 20160506-1.54bab3d
@@ -90,6 +96,6 @@ done
 - Add bluetooth firmware (sourced from openelec repo as RPi foundation
   don't seem to want to make this easily available anywhere.... why??)
 - Add Obsoletes / Conflicts: brcm43430-firmware
-  
+
 * Thu Mar 10 2016 Vaughan <devel at agrez dot net> - 20160310-1.54bab3d
 - Initial package
