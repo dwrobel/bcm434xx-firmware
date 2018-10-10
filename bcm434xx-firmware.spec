@@ -24,6 +24,8 @@ Source3:    %{url}/bluez-firmware/raw/%{commit_bt}/broadcom/BCM43430A1.hcd
 Source4:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.bin
 Source5:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.clm_blob
 Source6:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.txt
+# RPi3B+ bluetooth firmware
+Source7:    %{url}/bluez-firmware/raw/%{commit_bt}/broadcom/BCM4345C0.hcd
 
 BuildArch:  noarch
 Conflicts:  linux-firmware < 20171215-83.git2451bb22
