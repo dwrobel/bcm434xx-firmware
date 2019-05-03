@@ -3,9 +3,9 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date	20181010
+%global snap_date	20190420
 %global commit_fw   b518de45ced519e8f7a499f4778100173402ae43
-%global commit_bt   ade2bae1aaaebede09abb8fb546f767a0e4c7804
+%global commit_bt   96eefffcccc725425fd83be5e0704a5c32b79e54
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 
 Name:       bcm434xx-firmware
@@ -42,7 +42,6 @@ in the Raspberry Pi 3 Model B (plus).
 
 %prep
 %setup -c -T %{name}-%{commit_short}
-
 cp -a %{sources} .
 
 
@@ -64,6 +63,9 @@ done
 
 
 %changelog
+* Sat Apr 20 2019 Vaughan <devel at agrez dot net> - 20190420-1.b518de4
+- Update RPi3B+ bluetooth firmware (BCM4345C0.hcd v003.001.025.0156.0280)
+
 * Wed Oct 10 2018 Vaughan <devel at agrez dot net> - 20181010-1.b518de4
 - Refactor sources (all firmware now sourced from https://github.com/RPi-Distro)
 - Sync firmware-nonfree to commit b518de45ced519e8f7a499f4778100173402ae43
