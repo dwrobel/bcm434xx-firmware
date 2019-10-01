@@ -3,8 +3,8 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date	20190420
-%global commit_fw   b518de45ced519e8f7a499f4778100173402ae43
+%global snap_date	20190530
+%global commit_fw   130cb86fa30cafbd575d38865fa546350d4c5f9c
 %global commit_bt   96eefffcccc725425fd83be5e0704a5c32b79e54
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 
@@ -63,6 +63,9 @@ done
 
 
 %changelog
+* Tue Oct 01 2019 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20190530-1.130cb86
+- Update to the latest available release (fixes lack of wlan on RPi4B)
+
 * Sat Apr 20 2019 Vaughan <devel at agrez dot net> - 20190420-1.b518de4
 - Update RPi3B+ bluetooth firmware (BCM4345C0.hcd v003.001.025.0156.0280)
 
