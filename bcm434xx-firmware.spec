@@ -3,9 +3,9 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date	20190530
-%global commit_fw   130cb86fa30cafbd575d38865fa546350d4c5f9c
-%global commit_bt   96eefffcccc725425fd83be5e0704a5c32b79e54
+%global snap_date   20200306
+%global commit_fw   ce751a84617715ca0189e55c3cf07f12d87e16e5
+%global commit_bt   fff76cb15527c435ce99a9787848eacd6288282c
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 
 Name:       bcm434xx-firmware
@@ -31,7 +31,7 @@ Source7:    %{url}/bluez-firmware/raw/%{commit_bt}/broadcom/BCM4345C0.hcd
 BuildArch:  noarch
 Conflicts:  linux-firmware < 20171215-83.git2451bb22
 Conflicts:  bcm43438-firmware
-Obsoletes:  bcm43438-firmware
+Obsoletes:  bcm43438-firmware <= 20180306-1.927fa8e
 Provides:   bcm43438-firmware
 
 
@@ -63,6 +63,11 @@ done
 
 
 %changelog
+* Mon Mar 09 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20200306-1.ce751a8
+- Sync firmware-nonfree to commit: 20200306gitce751a8
+- Sync bluez-firmware to commit:   20191202gitfff76cb
+- Fix rpm warning: "It's not recommended to have unversioned Obsoletes"
+
 * Tue Oct 01 2019 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20190530-1.130cb86
 - Update to the latest available release (fixes lack of wlan on RPi4B)
 
