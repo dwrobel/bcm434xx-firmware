@@ -3,9 +3,9 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20200306
-%global commit_fw   ce751a84617715ca0189e55c3cf07f12d87e16e5
-%global commit_bt   fff76cb15527c435ce99a9787848eacd6288282c
+%global snap_date   20200529
+%global commit_fw   616fc2dd4df421e3974179d9e46d45e7006aeb28
+%global commit_bt   98cbd44897277502200537dbacbe53a22def0417
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 
 Name:       bcm434xx-firmware
@@ -63,6 +63,10 @@ done
 
 
 %changelog
+* Fri May 29 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20200529-1.616fc2d
+- Sync firmware-nonfree to commit: 20200417git616fc2d
+- Sync bluez-firmware to commit:   20200518git98cbd44
+
 * Mon Mar 09 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20200306-1.ce751a8
 - Sync firmware-nonfree to commit: 20200306gitce751a8
 - Sync bluez-firmware to commit:   20191202gitfff76cb
