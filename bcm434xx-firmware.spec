@@ -10,7 +10,7 @@
 
 Name:       bcm434xx-firmware
 Version:    %{snap_date}
-Release:    1.%{commit_short}%{?dist}
+Release:    2.%{commit_short}%{?dist}
 Summary:    Binary firmwares for Broadcom BCM434xx modules
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -49,20 +49,23 @@ cp -a %{sources} .
 
 
 %install
-%{__install} -d %{buildroot}/%{_libdir}/firmware/brcm/
+%{__install} -d %{buildroot}%{_prefix}/lib/firmware/brcm/
 
 for i in %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} \
 %{SOURCE7}; do
-    %{__install} -p -m0644 $i %{buildroot}/%{_libdir}/firmware/brcm/
+    %{__install} -p -m0644 $i %{buildroot}%{_prefix}/lib/firmware/brcm/
 done
 
 
 %files
 %license LICENCE.broadcom_bcm43xx
-%{_libdir}/firmware/brcm/*
+%{_prefix}/lib/firmware/brcm/*
 
 
 %changelog
+* Fri Sep 11 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20200902-2.98e8157
+- Fix install dir on aarch64
+
 * Wed Sep 02 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20200902-1.98e8157
 - Sync firmware-nonfree to commit: 20200729git98e8157
 - Sync bluez-firmware to commit:   20200805gitafe608e
