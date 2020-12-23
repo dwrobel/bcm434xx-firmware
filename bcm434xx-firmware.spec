@@ -3,14 +3,14 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20200902
-%global commit_fw   98e815735e2c805d65994ccc608f399595b74438
-%global commit_bt   afe608e7055a0c8d80c9430e16993e6219e46c93
+%global snap_date   20201201
+%global commit_fw   b66ab26cebff689d0d3257f56912b9bb03c20567
+%global commit_bt   1e4ee0c05bae10002124b56c0e44bb9ac6581ddc
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 
 Name:       bcm434xx-firmware
 Version:    %{snap_date}
-Release:    2.%{commit_short}%{?dist}
+Release:    1.%{commit_short}%{?dist}
 Summary:    Binary firmwares for Broadcom BCM434xx modules
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -63,6 +63,10 @@ done
 
 
 %changelog
+* Wed Dec 23 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20201201-1.b66ab26
+- Sync firmware-nonfree to commit: 20201201gitb66ab26
+- Sync bluez-firmware to commit:   20201126git1e4ee0c
+
 * Fri Sep 11 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20200902-2.98e8157
 - Fix install dir on aarch64
 
