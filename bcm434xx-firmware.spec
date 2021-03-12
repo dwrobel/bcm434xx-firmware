@@ -3,10 +3,11 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20201201
-%global commit_fw   b66ab26cebff689d0d3257f56912b9bb03c20567
-%global commit_bt   1e4ee0c05bae10002124b56c0e44bb9ac6581ddc
+%global snap_date   20210125
+%global commit_fw   83938f78ca2d5a0ffe0c223bb96d72ccc7b71ca5
+%global commit_bt   e7fd166981ab4bb9a36c2d1500205a078a35714d
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
+%global fetch_url	https://raw.githubusercontent.com/RPi-Distro
 
 Name:       bcm434xx-firmware
 Version:    %{snap_date}
@@ -14,19 +15,19 @@ Release:    1.%{commit_short}%{?dist}
 Summary:    Binary firmwares for Broadcom BCM434xx modules
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
-URL:        https://github.com/RPi-Distro
-Source0:    %{url}/firmware-nonfree/raw/%{commit_fw}/LICENCE.broadcom_bcm43xx
+URL:        https://github.com/RPi-Distro/
+Source0:    %{fetch_url}/firmware-nonfree/%{commit_fw}/LICENCE.broadcom_bcm43xx
 # RPi3B wifi firmware
-Source1:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43430-sdio.bin
-Source2:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43430-sdio.txt
+Source1:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43430-sdio.bin
+Source2:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43430-sdio.txt
 # RPi3B bluetooth firmware
-Source3:    %{url}/bluez-firmware/raw/%{commit_bt}/broadcom/BCM43430A1.hcd
+Source3:    %{fetch_url}/bluez-firmware/%{commit_bt}/broadcom/BCM43430A1.hcd
 # RPi3B+ wifi firmware
-Source4:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.bin
-Source5:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.clm_blob
-Source6:    %{url}/firmware-nonfree/raw/%{commit_fw}/brcm/brcmfmac43455-sdio.txt
+Source4:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43455-sdio.bin
+Source5:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43455-sdio.clm_blob
+Source6:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43455-sdio.txt
 # RPi3B+ bluetooth firmware
-Source7:    %{url}/bluez-firmware/raw/%{commit_bt}/broadcom/BCM4345C0.hcd
+Source7:    %{fetch_url}/bluez-firmware/%{commit_bt}/broadcom/BCM4345C0.hcd
 
 BuildArch:  noarch
 Conflicts:  linux-firmware < 20171215-83.git2451bb22
@@ -63,6 +64,10 @@ done
 
 
 %changelog
+* Fri Mar 12 2021 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20210125-1.83938f7
+- Sync firmware-nonfree to commit: 20210125git83938f7
+- Sync bluez-firmware to commit:   20210128gite7fd166
+
 * Wed Dec 23 2020 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20201201-1.b66ab26
 - Sync firmware-nonfree to commit: 20201201gitb66ab26
 - Sync bluez-firmware to commit:   20201126git1e4ee0c
