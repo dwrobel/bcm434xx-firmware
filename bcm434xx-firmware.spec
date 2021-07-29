@@ -3,8 +3,8 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20210125
-%global commit_fw   83938f78ca2d5a0ffe0c223bb96d72ccc7b71ca5
+%global snap_date   20210623
+%global commit_fw   00de3194a96397c913786945ac0af1fd6fbec45b
 %global commit_bt   e7fd166981ab4bb9a36c2d1500205a078a35714d
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
@@ -28,6 +28,11 @@ Source5:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43455-sdio.c
 Source6:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43455-sdio.txt
 # RPi3B+ bluetooth firmware
 Source7:    %{fetch_url}/bluez-firmware/%{commit_bt}/broadcom/BCM4345C0.hcd
+# RPi400 wifi firmware
+Source8:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43456-sdio.bin
+Source9:    %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43456-sdio.clm_blob
+Source10:   %{fetch_url}/firmware-nonfree/%{commit_fw}/brcm/brcmfmac43456-sdio.txt
+
 
 BuildArch:  noarch
 Conflicts:  linux-firmware < 20171215-83.git2451bb22
@@ -53,10 +58,14 @@ cp -a %{sources} .
 %{__install} -d %{buildroot}%{_prefix}/lib/firmware/brcm/
 
 for i in %{SOURCE1} %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE5} %{SOURCE6} \
-%{SOURCE7}; do
+%{SOURCE7} %{SOURCE8} %{SOURCE9} %{SOURCE10}; do
     %{__install} -p -m0644 $i %{buildroot}%{_prefix}/lib/firmware/brcm/
 done
 
+pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
+  ln -s brcmfmac43456-sdio.txt brcmfmac43456-sdio.raspberrypi,400.txt
+  ln -s brcmfmac43456-sdio.txt brcmfmac43456-sdio.raspberrypi,4-compute-module.txt
+popd
 
 %files
 %license LICENCE.broadcom_bcm43xx
@@ -64,6 +73,10 @@ done
 
 
 %changelog
+* Thu Jun 24 2021 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20210623-1.00de319
+- Sync firmware-nonfree to commit: 20210623git00de319
+- Add RPi400 firmware
+
 * Fri Mar 12 2021 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20210125-1.83938f7
 - Sync firmware-nonfree to commit: 20210125git83938f7
 - Sync bluez-firmware to commit:   20210128gite7fd166
