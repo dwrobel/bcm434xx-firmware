@@ -3,8 +3,8 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20210623
-%global commit_fw   00de3194a96397c913786945ac0af1fd6fbec45b
+%global snap_date   20210922
+%global commit_fw   d27b9f1ce094fcb49e30e0f9fcdc7a4459b9c211
 %global commit_bt   e7fd166981ab4bb9a36c2d1500205a078a35714d
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
@@ -73,6 +73,9 @@ popd
 
 
 %changelog
+* Wed Sep 22 2021 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20210922-1.d27b9f1
+- Sync firmware-nonfree to commit: 20210922gitd27b9f1
+
 * Thu Jun 24 2021 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20210623-1.00de319
 - Sync firmware-nonfree to commit: 20210623git00de319
 - Add RPi400 firmware
