@@ -3,9 +3,9 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20211206
-%global commit_fw   99d5c588e95ec9c9b86d7e88d3cf85b4f729d2bc
-%global commit_bt   e7fd166981ab4bb9a36c2d1500205a078a35714d
+%global snap_date   20220714
+%global commit_fw   d9c88346cab86e23394ebf6cb6cb3069602d29f4
+%global commit_bt   31ad68831357d2019624004f1f0846475671088f
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
 
@@ -16,7 +16,7 @@ Summary:    Binary firmwares for Broadcom BCM434xx modules
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
 URL:        https://github.com/RPi-Distro/
-Source0:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/LICENSE
+Source0:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/copyright
 
 Source1:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/defines
 Source2:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/README.txt
@@ -27,7 +27,8 @@ Source5:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/b
 # RPi3B bluetooth firmware
 Source6:    %{fetch_url}/bluez-firmware/%{commit_bt}/broadcom/BCM43430A1.hcd
 # RPi3B+ wifi firmware
-Source7:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43455-sdio.bin
+Source7:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43455-sdio-standard.bin
+Source77:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43455-sdio-minimal.bin
 Source8:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43455-sdio.clm_blob
 Source9:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43455-sdio.txt
 # RPi3B+ bluetooth firmware
@@ -68,7 +69,7 @@ for i in %{SOURCE1}; do
 done
 
 %{__install} -d %{buildroot}%{_prefix}/lib/firmware/cypress/
-for i in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE7} %{SOURCE8}; do
+for i in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE7} %{SOURCE77} %{SOURCE8}; do
     %{__install} -p -m0644 $i %{buildroot}%{_prefix}/lib/firmware/cypress/
 done
 
@@ -85,7 +86,7 @@ pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
   ln -s brcmfmac43430-sdio.txt brcmfmac43430-sdio.raspberrypi,3-model-b.txt
   ln -s brcmfmac43430-sdio.txt brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
 
-  ln -s ../cypress/cyfmac43455-sdio.bin brcmfmac43455-sdio.bin
+  ln -s ../cypress/cyfmac43455-sdio-standard.bin brcmfmac43455-sdio.bin
   ln -s ../cypress/cyfmac43455-sdio.clm_blob brcmfmac43455-sdio.clm_blob
   ln -s brcmfmac43455-sdio.txt brcmfmac43455-sdio.raspberrypi,3-model-a-plus.txt
   ln -s brcmfmac43455-sdio.txt brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt
@@ -93,7 +94,7 @@ pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
 popd
 
 %files
-%license LICENSE
+%license copyright
 %{_prefix}/lib/firmware/defines
 %dir %{_prefix}/lib/firmware/cypress
 %{_prefix}/lib/firmware/cypress/*
@@ -102,6 +103,10 @@ popd
 
 
 %changelog
+* Tue Sep 13 2022 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20220714-1.d9c8834
+- Sync firmware-nonfree to commit: 20220714gitd9c8834
+- Sync bluez-firmware to commit:   20220505git31ad688
+
 * Thu Mar 31 2022 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20211206-1.99d5c58
 - Sync firmware-nonfree to commit: 20211206git99d5c58
 
