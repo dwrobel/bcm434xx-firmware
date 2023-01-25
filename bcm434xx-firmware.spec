@@ -1,11 +1,13 @@
 #debug packages make no sense!
 %global debug_package %{nil}
+%global _build_id_links none
+%global __debug_package %{nil}
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20220714
-%global commit_fw   d9c88346cab86e23394ebf6cb6cb3069602d29f4
-%global commit_bt   31ad68831357d2019624004f1f0846475671088f
+%global snap_date   20230125
+%global commit_fw   7f29411baead874b859eda53efdc2472345ea454
+%global commit_bt   9556b08ace2a1735127894642cc8ea6529c04c90
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
 
@@ -41,6 +43,8 @@ Source13:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/b
 Source14:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436-sdio.bin
 Source15:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436-sdio.clm_blob
 Source16:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436-sdio.txt
+Source17:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.bin
+Source18:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.txt
 
 BuildArch:  noarch
 Conflicts:  linux-firmware < 20171215-83.git2451bb22
@@ -76,21 +80,51 @@ done
 %{__install} -d %{buildroot}%{_prefix}/lib/firmware/brcm/
 for i in %{SOURCE5} %{SOURCE6} \
   %{SOURCE9} %{SOURCE10} %{SOURCE11} %{SOURCE12} \
-  %{SOURCE13} %{SOURCE14} %{SOURCE15} %{SOURCE16}; do
+  %{SOURCE13} %{SOURCE14} %{SOURCE15} %{SOURCE16} %{SOURCE17} %{SOURCE18}; do
     %{__install} -p -m0644 $i %{buildroot}%{_prefix}/lib/firmware/brcm/
 done
 
-pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
-  ln -s ../cypress/cyfmac43430-sdio.bin brcmfmac43430-sdio.bin
-  ln -s ../cypress/cyfmac43430-sdio.clm_blob brcmfmac43430-sdio.clm_blob
-  ln -s brcmfmac43430-sdio.txt brcmfmac43430-sdio.raspberrypi,3-model-b.txt
-  ln -s brcmfmac43430-sdio.txt brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
+pushd %{buildroot}%{_prefix}/lib/firmware/cypress/
+  # Use standard version by default
+  ln -s cyfmac43455-sdio-standard.bin cyfmac43455-sdio.bin
+popd
 
-  ln -s ../cypress/cyfmac43455-sdio-standard.bin brcmfmac43455-sdio.bin
-  ln -s ../cypress/cyfmac43455-sdio.clm_blob brcmfmac43455-sdio.clm_blob
-  ln -s brcmfmac43455-sdio.txt brcmfmac43455-sdio.raspberrypi,3-model-a-plus.txt
-  ln -s brcmfmac43455-sdio.txt brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt
-  ln -s brcmfmac43455-sdio.txt brcmfmac43455-sdio.raspberrypi,4-model-b.txt
+pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
+  # Generated from firmware-nonfree/debian/config/brcm80211/brcm directory using:
+  # $ ls -ls | grep -- '->' | awk '{print "  ln -s "$12 "\t" $10}'
+  ln -s ../cypress/cyfmac43430-sdio.bin	brcmfmac43430-sdio.bin
+  ln -s ../cypress/cyfmac43430-sdio.clm_blob	brcmfmac43430-sdio.clm_blob
+  ln -s ../cypress/cyfmac43430-sdio.bin	brcmfmac43430-sdio.raspberrypi,3-model-b.bin
+  ln -s ../cypress/cyfmac43430-sdio.clm_blob	brcmfmac43430-sdio.raspberrypi,3-model-b.clm_blob
+  ln -s brcmfmac43430-sdio.txt	brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+  ln -s ../cypress/cyfmac43430-sdio.bin	brcmfmac43430-sdio.raspberrypi,model-zero-w.bin
+  ln -s ../cypress/cyfmac43430-sdio.clm_blob	brcmfmac43430-sdio.raspberrypi,model-zero-w.clm_blob
+  ln -s brcmfmac43430-sdio.txt	brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
+  ln -s brcmfmac43436-sdio.bin	brcmfmac43436-sdio.raspberrypi,model-zero-2-w.bin
+  ln -s brcmfmac43436-sdio.clm_blob	brcmfmac43436-sdio.raspberrypi,model-zero-2-w.clm_blob
+  ln -s brcmfmac43436-sdio.txt	brcmfmac43436-sdio.raspberrypi,model-zero-2-w.txt
+  ln -s brcmfmac43436s-sdio.bin	brcmfmac43436s-sdio.raspberrypi,model-zero-2-w.bin
+  ln -s brcmfmac43436s-sdio.txt	brcmfmac43436s-sdio.raspberrypi,model-zero-2-w.txt
+  ln -s ../cypress/cyfmac43455-sdio.bin	brcmfmac43455-sdio.bin
+  ln -s ../cypress/cyfmac43455-sdio.clm_blob	brcmfmac43455-sdio.clm_blob
+  ln -s ../cypress/cyfmac43455-sdio.bin	brcmfmac43455-sdio.raspberrypi,3-model-a-plus.bin
+  ln -s ../cypress/cyfmac43455-sdio.clm_blob	brcmfmac43455-sdio.raspberrypi,3-model-a-plus.clm_blob
+  ln -s brcmfmac43455-sdio.txt	brcmfmac43455-sdio.raspberrypi,3-model-a-plus.txt
+  ln -s ../cypress/cyfmac43455-sdio.bin	brcmfmac43455-sdio.raspberrypi,3-model-b-plus.bin
+  ln -s ../cypress/cyfmac43455-sdio.clm_blob	brcmfmac43455-sdio.raspberrypi,3-model-b-plus.clm_blob
+  ln -s brcmfmac43455-sdio.txt	brcmfmac43455-sdio.raspberrypi,3-model-b-plus.txt
+  ln -s ../cypress/cyfmac43455-sdio.bin	brcmfmac43455-sdio.raspberrypi,4-compute-module.bin
+  ln -s ../cypress/cyfmac43455-sdio.clm_blob	brcmfmac43455-sdio.raspberrypi,4-compute-module.clm_blob
+  ln -s brcmfmac43455-sdio.txt	brcmfmac43455-sdio.raspberrypi,4-compute-module.txt
+  ln -s ../cypress/cyfmac43455-sdio.bin	brcmfmac43455-sdio.raspberrypi,4-model-b.bin
+  ln -s ../cypress/cyfmac43455-sdio.clm_blob	brcmfmac43455-sdio.raspberrypi,4-model-b.clm_blob
+  ln -s brcmfmac43455-sdio.txt	brcmfmac43455-sdio.raspberrypi,4-model-b.txt
+  ln -s brcmfmac43456-sdio.bin	brcmfmac43456-sdio.raspberrypi,400.bin
+  ln -s brcmfmac43456-sdio.clm_blob	brcmfmac43456-sdio.raspberrypi,400.clm_blob
+  ln -s brcmfmac43456-sdio.txt	brcmfmac43456-sdio.raspberrypi,400.txt
+  ln -s brcmfmac43456-sdio.bin	brcmfmac43456-sdio.raspberrypi,4-compute-module.bin
+  ln -s brcmfmac43456-sdio.clm_blob	brcmfmac43456-sdio.raspberrypi,4-compute-module.clm_blob
+  ln -s brcmfmac43456-sdio.txt	brcmfmac43456-sdio.raspberrypi,4-compute-module.txt
 popd
 
 %files
@@ -103,6 +137,10 @@ popd
 
 
 %changelog
+* Wed Jan 25 2023 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20230125-1.7f29411
+- Sync firmware-nonfree to commit: 20230125git7f29411
+- Sync bluez-firmware to commit:   20230105git9556b08
+
 * Tue Sep 13 2022 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20220714-1.d9c8834
 - Sync firmware-nonfree to commit: 20220714gitd9c8834
 - Sync bluez-firmware to commit:   20220505git31ad688
