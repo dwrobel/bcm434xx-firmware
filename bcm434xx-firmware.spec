@@ -5,20 +5,20 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20230125
-%global commit_fw   7f29411baead874b859eda53efdc2472345ea454
+%global snap_date   20230619
+%global commit_fw   b5df30d1b2bc40e9305bf231c60f415aefc7d11d
 %global commit_bt   9556b08ace2a1735127894642cc8ea6529c04c90
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
 
 Name:       bcm434xx-firmware
 Version:    %{snap_date}
-Release:    1.%{commit_short}%{?dist}
+Release:    0.%{commit_short}%{?dist}
 Summary:    Binary firmwares for Broadcom BCM434xx modules
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
 URL:        https://github.com/RPi-Distro/
-Source0:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/copyright
+Source0:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/copyright
 
 Source1:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/defines
 Source2:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/README.txt
@@ -92,11 +92,16 @@ popd
 pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
   # Generated from firmware-nonfree/debian/config/brcm80211/brcm directory using:
   # $ ls -ls | grep -- '->' | awk '{print "  ln -s "$12 "\t" $10}'
+  ln -s brcmfmac43436-sdio.bin	brcmfmac43430b0-sdio.raspberrypi,model-zero-2-w.bin
+  ln -s brcmfmac43436-sdio.clm_blob	brcmfmac43430b0-sdio.raspberrypi,model-zero-2-w.clm_blob
+  ln -s brcmfmac43436-sdio.txt	brcmfmac43430b0-sdio.raspberrypi,model-zero-2-w.txt
   ln -s ../cypress/cyfmac43430-sdio.bin	brcmfmac43430-sdio.bin
   ln -s ../cypress/cyfmac43430-sdio.clm_blob	brcmfmac43430-sdio.clm_blob
   ln -s ../cypress/cyfmac43430-sdio.bin	brcmfmac43430-sdio.raspberrypi,3-model-b.bin
   ln -s ../cypress/cyfmac43430-sdio.clm_blob	brcmfmac43430-sdio.raspberrypi,3-model-b.clm_blob
   ln -s brcmfmac43430-sdio.txt	brcmfmac43430-sdio.raspberrypi,3-model-b.txt
+  ln -s brcmfmac43436s-sdio.bin	brcmfmac43430-sdio.raspberrypi,model-zero-2-w.bin
+  ln -s brcmfmac43436s-sdio.txt	brcmfmac43430-sdio.raspberrypi,model-zero-2-w.txt
   ln -s ../cypress/cyfmac43430-sdio.bin	brcmfmac43430-sdio.raspberrypi,model-zero-w.bin
   ln -s ../cypress/cyfmac43430-sdio.clm_blob	brcmfmac43430-sdio.raspberrypi,model-zero-w.clm_blob
   ln -s brcmfmac43430-sdio.txt	brcmfmac43430-sdio.raspberrypi,model-zero-w.txt
@@ -137,6 +142,9 @@ popd
 
 
 %changelog
+* Thu Jul 06 2023 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20230619-1.b5df30d
+- Sync firmware-nonfree to commit: 20230619gitb5df30d
+
 * Wed Jan 25 2023 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20230125-1.7f29411
 - Sync firmware-nonfree to commit: 20230125git7f29411
 - Sync bluez-firmware to commit:   20230105git9556b08
