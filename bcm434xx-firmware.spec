@@ -13,7 +13,7 @@
 
 Name:       bcm434xx-firmware
 Version:    %{snap_date}
-Release:    1.%{commit_short}%{?dist}
+Release:    2.%{commit_short}%{?dist}
 Summary:    Binary firmwares for Broadcom BCM434xx modules
 Group:      System Environment/Kernel
 License:    Redistributable, no modification permitted
@@ -45,7 +45,7 @@ Source15:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/b
 Source16:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436-sdio.txt
 Source17:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.bin
 Source18:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.txt
-# RpiPico W
+# RPiPico W
 Source19:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43439-sdio.bin
 Source20:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43439-sdio.clm_blob
 Source21:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43439-sdio.txt
@@ -77,7 +77,8 @@ for i in %{SOURCE1}; do
 done
 
 %{__install} -d %{buildroot}%{_prefix}/lib/firmware/cypress/
-for i in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE7} %{SOURCE77} %{SOURCE8}; do
+for i in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE7} %{SOURCE77} %{SOURCE8} \
+         %{SOURCE19} %{SOURCE20} %{SOURCE21}; do
     %{__install} -p -m0644 $i %{buildroot}%{_prefix}/lib/firmware/cypress/
 done
 
@@ -152,6 +153,9 @@ popd
 
 
 %changelog
+* Wed Oct 23 2024 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20240810-2.4b356e1
+- Install SOURCE{19..21} files
+
 * Wed Oct 23 2024 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 2020810-1.4b356e1
 - Sync firmware-nonfree to commit: 20240810git4b356e1
 - Sync bluez-firmware to commit:   20240226git78d6a07
