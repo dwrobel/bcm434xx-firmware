@@ -5,9 +5,9 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20250311
-%global commit_fw   3900afffcd85198e3afab396fbf1d0abe5f76173
-%global commit_bt   2bbfb8438e824f5f61dae3f6ebb367a6129a4d63
+%global snap_date   20250930
+%global commit_fw   e90d6888e745eb9ee1aab098fff001edc31b95b7
+%global commit_bt   cdf61dc691a49ff01a124752bd04194907f0f9cd
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
 
@@ -121,6 +121,9 @@ pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
   ln -s brcmfmac43436s-sdio.txt	brcmfmac43436s-sdio.raspberrypi,model-zero-2-w.txt
   ln -s ../cypress/cyfmac43439-sdio.bin	brcmfmac43439-sdio.bin
   ln -s ../cypress/cyfmac43439-sdio.clm_blob	brcmfmac43439-sdio.clm_blob
+  ln -s ../cypress/cyfmac43439-sdio.bin	brcmfmac43439-sdio.raspberrypi,0-compute-module.bin
+  ln -s ../cypress/cyfmac43439-sdio.clm_blob	brcmfmac43439-sdio.raspberrypi,0-compute-module.clm_blob
+  ln -s ../cypress/cyfmac43439-sdio.txt	brcmfmac43439-sdio.raspberrypi,0-compute-module.txt
   ln -s ../cypress/cyfmac43439-sdio.txt	brcmfmac43439-sdio.txt
   ln -s ../cypress/cyfmac43455-sdio.bin	brcmfmac43455-sdio.raspberrypi,3-model-a-plus.bin
   ln -s ../cypress/cyfmac43455-sdio.clm_blob	brcmfmac43455-sdio.raspberrypi,3-model-a-plus.clm_blob
@@ -161,6 +164,11 @@ popd
 
 
 %changelog
+* Fri Oct 17 2025 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20250930-1.e90d688
+- Sync firmware-nonfree to commit: 20250311gite90d688
+- Sync bluez-firmware to commit:   20251002gitcdf61dc
+- Update symlinks
+
 * Thu Mar 20 2025 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20250311-1.3900aff
 - Sync firmware-nonfree to commit: 20250311git3900aff
 - Sync bluez-firmware to commit:   20250303git2bbfb84
