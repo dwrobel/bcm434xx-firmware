@@ -5,8 +5,8 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20250930
-%global commit_fw   e90d6888e745eb9ee1aab098fff001edc31b95b7
+%global snap_date   20260321
+%global commit_fw   9794282eb9f4a2de1f23b41a738926740e975d83
 %global commit_bt   cdf61dc691a49ff01a124752bd04194907f0f9cd
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
@@ -164,6 +164,9 @@ popd
 
 
 %changelog
+* Mon Apr 13 2026 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20260321-1.9794282
+- Sync firmware-nonfree to commit: 20260321git9794282
+
 * Fri Oct 17 2025 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20250930-1.e90d688
 - Sync firmware-nonfree to commit: 20250311gite90d688
 - Sync bluez-firmware to commit:   20251002gitcdf61dc
