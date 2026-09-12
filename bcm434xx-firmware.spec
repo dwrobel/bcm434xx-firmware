@@ -5,8 +5,8 @@
 #no stripping required either
 %global __os_install_post %{nil}
 
-%global snap_date   20260321
-%global commit_fw   9794282eb9f4a2de1f23b41a738926740e975d83
+%global snap_date   20260710
+%global commit_fw   3bab0f823f5b53150b76aab77093adef6655b920
 %global commit_bt   cdf61dc691a49ff01a124752bd04194907f0f9cd
 %global commit_short	%(c=%{commit_fw}; echo ${c:0:7})
 %global fetch_url	https://raw.githubusercontent.com/RPi-Distro
@@ -20,36 +20,35 @@ License:    Redistributable, no modification permitted
 URL:        https://github.com/RPi-Distro/
 Source0:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/copyright
 
-Source1:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/defines
-Source2:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/README.txt
+Source2:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/README.txt
 # RPi3B wifi firmware
-Source3:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43430-sdio.bin
-Source4:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43430-sdio.clm_blob
-Source5:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43430-sdio.txt
+Source3:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43430-sdio.bin
+Source4:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43430-sdio.clm_blob
+Source5:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43430-sdio.txt
 # RPi3B bluetooth firmware
 Source6:    %{fetch_url}/bluez-firmware/%{commit_bt}/debian/firmware/broadcom/BCM43430A1.hcd
 # RPi3B+ wifi firmware
-Source7:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43455-sdio-standard.bin
-Source77:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43455-sdio-minimal.bin
-Source8:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43455-sdio.clm_blob
-Source9:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43455-sdio.txt
+Source7:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43455-sdio-standard.bin
+Source77:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43455-sdio-minimal.bin
+Source8:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43455-sdio.clm_blob
+Source9:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43455-sdio.txt
 # RPi3B+ bluetooth firmware
 Source10:    %{fetch_url}/bluez-firmware/%{commit_bt}/debian/firmware/broadcom/BCM4345C0.hcd
 # RPi400 wifi firmware
-Source11:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43456-sdio.bin
-Source12:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43456-sdio.clm_blob
-Source13:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43456-sdio.txt
+Source11:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43456-sdio.bin
+Source12:    %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43456-sdio.clm_blob
+Source13:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43456-sdio.txt
 # RPiZero 2 W
-Source14:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436-sdio.bin
-Source15:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436-sdio.clm_blob
-Source16:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436-sdio.txt
-Source17:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.bin
-Source171:  %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.nolpo.txt
-Source18:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/brcm/brcmfmac43436s-sdio.txt
+Source14:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43436-sdio.bin
+Source15:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43436-sdio.clm_blob
+Source16:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43436-sdio.txt
+Source17:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43436s-sdio.bin
+Source171:  %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43436s-sdio.nolpo.txt
+Source18:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/brcm/brcmfmac43436s-sdio.txt
 # RPiPico W
-Source19:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43439-sdio.bin
-Source20:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43439-sdio.clm_blob
-Source21:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/config/brcm80211/cypress/cyfmac43439-sdio.txt
+Source19:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43439-sdio.bin
+Source20:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43439-sdio.clm_blob
+Source21:   %{fetch_url}/firmware-nonfree/%{commit_fw}/debian/added-firmware/cypress/cyfmac43439-sdio.txt
 
 BuildArch:  noarch
 Conflicts:  linux-firmware < 20171215-83.git2451bb22
@@ -73,9 +72,6 @@ cp -a %{sources} .
 
 %install
 %{__install} -d %{buildroot}%{_prefix}/lib/firmware/
-for i in %{SOURCE1}; do
-    %{__install} -p -m0644 $i %{buildroot}%{_prefix}/lib/firmware/
-done
 
 %{__install} -d %{buildroot}%{_prefix}/lib/firmware/cypress/
 for i in %{SOURCE2} %{SOURCE3} %{SOURCE4} %{SOURCE7} %{SOURCE77} %{SOURCE8} \
@@ -97,7 +93,7 @@ pushd %{buildroot}%{_prefix}/lib/firmware/cypress/
 popd
 
 pushd %{buildroot}%{_prefix}/lib/firmware/brcm/
-  # Generated from firmware-nonfree/debian/config/brcm80211/brcm directory using:
+  # Generated from firmware-nonfree/debian/added-firmware/brcm using:
   # $ ls -ls | grep -- '->' | awk '{print "  ln -s "$12 "\t" $10}'
   ln -s brcmfmac43436-sdio.bin	brcmfmac43430b0-sdio.raspberrypi,model-zero-2-w.bin
   ln -s brcmfmac43436-sdio.clm_blob	brcmfmac43430b0-sdio.raspberrypi,model-zero-2-w.clm_blob
@@ -156,7 +152,6 @@ popd
 
 %files
 %license copyright
-%{_prefix}/lib/firmware/defines
 %dir %{_prefix}/lib/firmware/cypress
 %{_prefix}/lib/firmware/cypress/*
 %dir %{_prefix}/lib/firmware/brcm
@@ -164,6 +159,9 @@ popd
 
 
 %changelog
+* Sat Sep 12 2026 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20260710-3.3bab0f8
+- Sync firmware-nonfree to commit: 20260710git3bab0f8
+
 * Mon Apr 13 2026 Damian Wrobel <dwrobel@ertelnet.rybnik.pl> - 20260321-1.9794282
 - Sync firmware-nonfree to commit: 20260321git9794282
 
